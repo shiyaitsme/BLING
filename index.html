@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLING</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@400;500;700&display=swap">
+
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<audio id="audio" preload="auto"></audio>
+
+<div class="phone">
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div class="page active" id="p-home">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="header">
+    <div class="header-top">
+      <div class="logo">BLING</div>
+      <div class="header-icons">
+        <div class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg></div>
+        <div class="icon-btn"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div>
+      </div>
+    </div>
+    <div class="carousel-wrap">
+      <div class="carousel-slides" id="carousel">
+        <!-- Slide 1 -->
+        <div class="carousel-slide">
+          <div class="hero-label">今日精选</div>
+          <div class="hero-title">冰面之上<br>的<em>美学叙事</em></div>
+          <div class="hero-sub">探索花样滑冰中被忽视的<br>艺术语言与情感张力</div>
+          <div class="hero-tags"><div class="tag">冰上弧线</div><div class="tag">考斯滕美学</div><div class="tag">编舞叙事</div></div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <div class="hero-label">运动员专题</div>
+          <div class="hero-title">羽生结弦<br>与<em>诗意孤独</em></div>
+          <div class="hero-sub">用冰面书写悲剧浪漫主义的<br>终极表达者</div>
+          <div class="hero-tags"><div class="tag">SEIMEI</div><div class="tag">OTOÑAL</div><div class="tag">悲剧美学</div></div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <div class="hero-label">周边上新</div>
+          <div class="hero-title">考斯滕<br><em>美学周边</em>首发</div>
+          <div class="hero-sub">从冰场到生活，将花滑美学<br>穿在身上</div>
+          <div class="hero-tags"><div class="tag">限定款</div><div class="tag">考斯滕印花</div><div class="tag">新品</div></div>
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <div class="c-dot active" id="dot-0"></div>
+        <div class="c-dot" id="dot-1"></div>
+        <div class="c-dot" id="dot-2"></div>
+      </div>
+    </div>
+    <div class="nav-tabs">
+      <div class="tab active">美学</div><div class="tab">运动员</div><div class="tab">节目</div><div class="tab">社区</div><div class="tab">周边</div>
+    </div>
+  </div>
+  <div class="scroll-area">
+  <div class="content">
+    <!-- PLAYER -->
+    <div class="player-strip" onclick="goPage('p-music')">
+      <div class="p-cover"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div>
+      <div class="p-info"><div class="p-title">Delulu</div><div class="p-artist">kiiikiii · 今日配乐推荐</div></div>
+      <div class="p-bar-wrap"><div class="p-bar-fill" id="mini-bar"></div></div>
+      <div class="p-play" onclick="togglePlay(event)">
+        <svg id="mini-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </div>
+    </div>
+
+    <!-- MUSE entry -->
+    <div class="muse-entry" onclick="goPage('p-muse')">
+      <div class="muse-entry-ghost">M</div>
+      <div class="muse-entry-orb"></div>
+      <div class="muse-entry-lbl">缪 斯 · MUSE</div>
+      <div class="muse-entry-ttl">和<em>她</em>聊聊<br>冰上的事</div>
+      <div class="muse-entry-sub">私人花滑评论员。聊节目、聊考斯滕、聊那些只有你注意到的细节。</div>
+      <div class="muse-entry-cta">现在开始 <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+    </div>
+
+    <!-- BLING ARC entry -->
+    <div class="arc-entry" onclick="openArc()">
+      <div class="arc-entry-row">
+        <div class="arc-entry-glyph">
+          <svg viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="30" r="26" stroke="rgba(176,168,216,0.5)" stroke-width="0.8"/>
+            <path d="M 8 38 Q 30 12, 52 38" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+            <circle cx="8" cy="38" r="2.5" fill="white"/>
+            <circle cx="52" cy="38" r="2.5" fill="rgba(176,168,216,1)"/>
+            <text x="30" y="35" text-anchor="middle" font-family="serif" font-size="9" fill="rgba(168,188,212,0.6)" font-style="italic">2026</text>
+          </svg>
+        </div>
+        <div class="arc-entry-text">
+          <div class="arc-entry-lbl">BLING ARC</div>
+          <div class="arc-entry-ttl">你的<span>冰封</span>档案</div>
+          <div class="arc-entry-sub">2026 · 你这一年的弧线</div>
+        </div>
+        <div class="arc-entry-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+      </div>
+    </div>
+
+    <!-- AESTHETICS -->
+    <div class="sec-hdr"><div class="sec-title">美学科普</div><div class="see-all">全部 ›</div></div>
+    <div class="feat-card" onclick="goPage('p-article')">
+      <div class="feat-img">
+        <img id="kenji-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="figure skating">
+        <div class="feat-overlay"></div>
+        <div class="heart-btn" onclick="toggleFav(event,this,'弧线美学','冰刃划过的几何诗学')"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+        <div class="feat-ghost">弧线</div>
+        <div class="feat-meta">
+          <div class="feat-lbl">弧线美学</div>
+          <div class="feat-ttl">冰刃划过的<br>几何诗学</div>
+          <div class="feat-sub">步法序列中的空间构成</div>
+        </div>
+      </div>
+      <div class="feat-footer">
+        <div class="feat-desc">冰面上的弧线，不只是技术的轨迹，更是情感流动的视觉语言……</div>
+        <div class="read-btn">阅读</div>
+      </div>
+    </div>
+    <div class="card-row">
+      <div class="card-sm"><div class="csm-img" style="position:relative;overflow:hidden;height:92px;"><img id="img-yuzuru" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);"><div class="csm-lbl">考斯滕</div></div><div class="csm-body"><div class="csm-cat">考斯滕</div><div class="csm-ttl">织物如何讲述故事</div><div class="csm-meta">光泽 · 纹样 · 叙事</div></div></div>
+      <div class="card-sm"><div class="csm-img" style="position:relative;overflow:hidden;height:92px;"><img id="img-note" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);"><div class="csm-lbl">配乐</div></div><div class="csm-body"><div class="csm-cat">配乐</div><div class="csm-ttl">音符与身体的共振</div><div class="csm-meta">情绪 · 节拍 · 呼吸</div></div></div>
+    </div>
+    <div class="card-row">
+      <div class="card-sm"><div class="csm-img" style="position:relative;overflow:hidden;height:92px;"><img id="img-tragic" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);"><div class="csm-lbl">编舞</div></div><div class="csm-body"><div class="csm-cat">编舞</div><div class="csm-ttl">空间中的悲剧浪漫</div><div class="csm-meta">暗黑 · 童话 · 极简</div></div></div>
+      <div class="card-sm"><div class="csm-img" style="position:relative;overflow:hidden;height:92px;"><img id="img-poem" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.7);"><div class="csm-lbl">肢体</div></div><div class="csm-body"><div class="csm-cat">肢体美学</div><div class="csm-ttl">延伸的末端是诗</div><div class="csm-meta">张力 · 柔韧 · 气息</div></div></div>
+    </div>
+    <!-- ATHLETES -->
+    <div class="sec-hdr" style="margin-top:10px;"><div class="sec-title">运动员专访</div><div class="see-all">全部 ›</div></div>
+    <div class="ath-row">
+      <div class="ath-card"><div class="ath-img a1" style="overflow:hidden;"><img id="img-sakamoto-home" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.85);"></div><div class="ath-body"><div class="ath-name">坂本花织</div><div class="ath-tag">表演性 · 生命力</div></div></div>
+      <div class="ath-card"><div class="ath-img a2" style="overflow:hidden;"><img id="img-yuna-home" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.85);"></div><div class="ath-body"><div class="ath-name">金妍儿</div><div class="ath-tag">极简 · 精准 · 永恒</div></div></div>
+      <div class="ath-card" onclick="goPage('p-yuzuru')" style="border-color:rgba(176,168,216,0.15)"><div class="ath-img a3" style="overflow:hidden;"><img id="img-yuzu-home" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.85);"></div><div class="ath-body"><div class="ath-name">羽生结弦</div><div class="ath-tag">诗意 · 悲剧美学</div></div></div>
+      <div class="ath-card" onclick="goPage('p-alysa')" style="border-color:rgba(168,188,212,0.15)"><div class="ath-img a4" style="overflow:hidden;"><img id="img-alysa-thumb" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.75);" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div><div class="ath-body"><div class="ath-name">Alysa Liu</div><div class="ath-tag">力量 · 爆发 · 自由</div></div></div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ARTICLE ═══════════════ -->
+<div class="page" id="p-article">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="back-bar" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg><span>美学科普</span></div>
+  <div class="scroll-area">
+  <div class="art-hero">
+    <img id="kenji-art" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.55);">
+    <div class="art-hero-overlay"></div>
+    <div class="art-hero-meta">
+      <div class="art-hero-lbl">弧线美学</div>
+      <div class="art-hero-ttl">冰刃划过的<br>几何诗学</div>
+      <div class="art-hero-sub">步法序列中的空间构成</div>
+    </div>
+  </div>
+  <div class="art-body">
+    <div class="art-intro">冰面上的弧线，不只是技术的轨迹。那是情感流动的视觉语言，是身体与重力之间最诗意的谈判。</div>
+
+    <div class="art-section">
+      <div class="art-sec-ttl">01 · 弧线的几何逻辑</div>
+      <div class="art-img-block"><img id="img-screen" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="art-img-caption">冰面划痕的俯拍，每一道弧线都是一次决策</div>
+      <div class="art-p">花滑的弧线并非随机，它遵循严格的几何法则。外刃和内刃的切换决定了曲率半径，而曲率半径又直接影响了观众感知到的"流动感"。一条完美的螺旋弧线，往往需要运动员在高速滑行中以极精确的身体倾斜角维持数秒。</div>
+      <div class="art-p">从美学角度看，大弧线制造空间感，给人以呼吸的余地；短促的折线则制造戏剧张力，像对话中的顿挫。最高级的编舞师，是在冰面上写诗的人。</div>
+    </div>
+
+    <div class="art-section">
+      <div class="art-sec-ttl">02 · 倾斜角度与情感</div>
+      <div class="art-img-block"><img id="img-emma" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="art-img-caption">身体倾角与情绪强度呈正相关</div>
+      <div class="art-p">研究表明，观众对花滑情感强度的感知，与运动员身体的倾斜角度高度相关。倾角越大，感知到的情绪烈度越高。这解释了为什么悲剧主题的节目往往有更多俯身、下沉的动作——那是用重力在说话。</div>
+      <div class="art-p">金妍儿的「悲歌」里，有一段以极低身位滑过半个冰场的弧线，身体几乎与冰面平行。那不是技术难度，那是一句无声的台词。</div>
+    </div>
+
+    <div class="art-section">
+      <div class="art-sec-ttl">03 · 经典节目赏析</div>
+      <div class="art-img-block"><img id="img-seimei" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div class="art-img-caption">羽生结弦《SEIMEI》中的步法序列</div>
+      <div class="art-p">以羽生结弦的《SEIMEI》为例，其步法序列中共出现11处明显的弧线切换，每一次切换都精确对应配乐中的情感节点。这种音画同步的极致，让整个Step Sequence本身成为一件独立的视觉艺术品。</div>
+    </div>
+
+    <div class="art-section">
+      <div class="art-sec-ttl">美学词汇</div>
+      <div class="tag-cloud">
+        <div class="cloud-tag lg">流动</div>
+        <div class="cloud-tag lg">张力</div>
+        <div class="cloud-tag">呼吸感</div>
+        <div class="cloud-tag lg">重力诗学</div>
+        <div class="cloud-tag sm">外刃弧线</div>
+        <div class="cloud-tag">悬停</div>
+        <div class="cloud-tag sm">螺旋下沉</div>
+        <div class="cloud-tag">折线戏剧</div>
+        <div class="cloud-tag lg">身体叙事</div>
+        <div class="cloud-tag sm">冰痕美学</div>
+      </div>
+    </div>
+
+    <div class="art-section">
+      <div class="art-sec-ttl">相关推荐</div>
+      <div class="related-row">
+        <div class="rel-card"><div class="rel-img r1"></div><div class="rel-body"><div class="rel-cat">考斯滕</div><div class="rel-ttl">织物与光的叙事</div></div></div>
+        <div class="rel-card"><div class="rel-img r2"></div><div class="rel-body"><div class="rel-cat">编舞</div><div class="rel-ttl">悲剧浪漫主义</div></div></div>
+        <div class="rel-card"><div class="rel-img r3"></div><div class="rel-body"><div class="rel-cat">配乐</div><div class="rel-ttl">音符与身体共振</div></div></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ ALYSA ═══════════════ -->
+<div class="page" id="p-alysa">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="back-bar" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg><span>运动员</span></div>
+  <div class="scroll-area">
+  <div class="aly-hero">
+    <img id="img-alysa2" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.6);" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+    <div class="aly-hero-overlay"></div>
+    <div class="aly-tag-bar"><div class="aly-badge">运动员专访</div><div class="aly-badge">2026 奥运冠军</div></div>
+    <div class="aly-hero-info">
+      <div class="aly-src">转载自 Teen Vogue · 2026.03</div>
+      <div class="aly-name">Alysa Liu</div>
+      <div class="aly-sub">自由是她最大的武器</div>
+    </div>
+  </div>
+  <div class="aly-body">
+    <div class="aly-stat-row">
+      <div class="aly-stat"><div class="aly-stat-num">2×</div><div class="aly-stat-lbl">奥运金牌</div></div>
+      <div class="aly-stat"><div class="aly-stat-num">20</div><div class="aly-stat-lbl">岁</div></div>
+      <div class="aly-stat"><div class="aly-stat-num">'26</div><div class="aly-stat-lbl">米兰冬奥</div></div>
+    </div>
+
+    <div class="aly-intro">她刚刚成为24年来第一位赢得奥运个人花滑金牌的美国女性，但她在采访中最想聊的，是和朋友吃的那顿中国菜。</div>
+
+    <div class="aly-quote">
+      <div class="aly-quote-text">我宁愿陪朋友出去玩，也不愿意多训练一场。如果这让我滑得差一点，那就差一点吧。我不在乎，我可以为此牺牲一切。</div>
+      <div class="aly-quote-src">— Alysa Liu，Teen Vogue 专访</div>
+    </div>
+
+    <div class="aly-sec-ttl">从退役到王者归来</div>
+    <div class="aly-p">2022年，16岁的 Alysa 做了一个让整个花滑界震惊的决定——退役。不是因为受伤，不是因为失败，而是因为她想知道，在花样滑冰之外，她是谁。</div>
+    <div class="aly-p">在那段时间里，她打游戏、看动漫、徒步、交朋友，过上了她形容为"正常的青少年生活"。直到2024年的一次滑雪之旅，雪板在山坡上滑行的感觉让她想起了冰面——那种滑翔感，那种与重力共舞的瞬间。</div>
+
+    <div class="aly-quote">
+      <div class="aly-quote-text">我喜欢挑战自己。大脑里有一个叫 aMCC 的区域，那里住着你的意志力。我热爱做那些我真的不想做的事，那些真正困难的事。</div>
+      <div class="aly-quote-src">— Alysa Liu，Teen Vogue 专访</div>
+    </div>
+
+    <div class="art-img-block" style="height:220px;border-radius:16px;overflow:hidden;margin-bottom:20px;"><img id="img-alysa" style="width:100%;height:100%;object-fit:cover;object-position:top;" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="></div>
+    <div class="aly-sec-ttl">关于美学与风格</div>
+    <div class="aly-p">Alysa 的考斯滕选择一直是外界津津乐道的话题。她从不选择"安全"的方案，总是在挑战花滑传统审美的边界。她标志性的 halo 发型——每年竞赛季增加一根发圈，像年轮一样记录时间——本身就是一件行为艺术。</div>
+    <div class="aly-p">Teen Vogue 的拍摄造型中，她穿着条纹毛衣和层叠半裙，发间别满了奇异的发夹——那是她本人的审美，不加修饰，不媚俗，充满一种随时准备发笑的生命力。</div>
+
+    <div class="aly-quote">
+      <div class="aly-quote-text">拿了金牌之后，我没有睡觉……回到家，我字面意义上做了五天想做的任何事。没有媒体，没有任何承诺，我终于又见到了很多朋友。</div>
+      <div class="aly-quote-src">— Alysa Liu，关于获奖后的生活</div>
+    </div>
+
+    <div class="aly-credit">本文内容转载改编自 Teen Vogue，摄影：Erika Parente Long。原文发布于 2026年3月。</div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ MUSIC ═══════════════ -->
+<div class="page" id="p-music">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="back-bar" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg><span>首页</span></div>
+  <div class="scroll-area">
+  <div class="mus-hero">
+    <div class="mus-holo"></div>
+    <div class="mus-cover" style="overflow:hidden;padding:0;"><img id="img-delulu-cover" style="width:100%;height:100%;object-fit:cover;border-radius:18px;"></div>
+    <div class="mus-overlay"></div>
+  </div>
+  <div class="mus-body">
+    <div class="mus-lbl">今日配乐推荐</div>
+    <div class="mus-ttl">Delulu</div>
+    <div class="mus-artist">kiiikiii</div>
+    <div class="big-player">
+      <div class="prog-wrap" onclick="seekAudio(event)">
+        <div class="prog-fill" id="big-bar"></div>
+      </div>
+      <div class="time-row"><span id="cur-time">0:00</span><span id="dur-time">0:00</span></div>
+      <div class="ctrl-row">
+        <div class="ctrl-sm" onclick="skipBack()"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 .49-3.43"></path></svg></div>
+        <div class="big-play-btn" onclick="togglePlay(event)">
+          <svg id="big-icon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </div>
+        <div class="ctrl-sm" onclick="skipFwd()"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-.49-3.43"></path></svg></div>
+      </div>
+    </div>
+    <div class="mus-sec-ttl">衍生考斯滕灵感</div>
+    <div class="kos-grid">
+      <div class="kos-card"><div class="kos-swatch k1"></div><div class="kos-name">迷幻紫雾</div><div class="kos-desc">薄纱叠层，边缘渐隐</div></div>
+      <div class="kos-card"><div class="kos-swatch k2"></div><div class="kos-name">冰湖倒影</div><div class="kos-desc">哑光蓝灰，珠片点缀</div></div>
+      <div class="kos-card"><div class="kos-swatch k3"></div><div class="kos-name">粉尘浪漫</div><div class="kos-desc">裸粉丝绒，背部镂空</div></div>
+      <div class="kos-card"><div class="kos-swatch k4"></div><div class="kos-name">暗夜独白</div><div class="kos-desc">深黑弹力，极简轮廓</div></div>
+    </div>
+    <div class="mus-sec-ttl">节目编排逻辑</div>
+    <div class="cho-item"><div class="cho-num">01</div><div><div class="cho-lbl">开场</div><div class="cho-ttl">慢入 · 迷失感</div><div class="cho-desc">以滑行弧线引入，身体微微倾斜，呼应歌曲开头模糊的情绪底色，像在梦中漂浮。</div></div></div>
+    <div class="cho-item"><div class="cho-num">02</div><div><div class="cho-lbl">副歌爆发</div><div class="cho-ttl">跳跃 · 释放张力</div><div class="cho-desc">副歌节点安排 3Lz 或 3F，落冰瞬间配合重拍，将音乐能量转化为身体冲击力。</div></div></div>
+    <div class="cho-item"><div class="cho-num">03</div><div><div class="cho-lbl">过渡段</div><div class="cho-ttl">步法叙事 · 戏剧性</div><div class="cho-desc">Step Sequence 中融入戏谑感的手势语言，用身体讲述「自我欺骗」的情感内核。</div></div></div>
+    <div class="cho-item"><div class="cho-num">04</div><div><div class="cho-lbl">收尾</div><div class="cho-ttl">定格 · 余韵未消</div><div class="cho-desc">最后旋转降速，眼神直视观众，带着一丝笑意定格——情绪悬而未决，留白给观者。</div></div></div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ COMMUNITY ═══════════════ -->
+<div class="page" id="p-community">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="comm-header">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div class="logo">社区</div>
+      <div class="icon-btn"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></div>
+    </div>
+    <div class="comm-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+      <span>搜索话题、用户、内容…</span>
+    </div>
+    <div class="comm-topics">
+      <div class="topic-pill active">全部</div>
+      <div class="topic-pill">考斯滕</div>
+      <div class="topic-pill">弧线美学</div>
+      <div class="topic-pill">配乐</div>
+      <div class="topic-pill">编舞</div>
+      <div class="topic-pill">运动员</div>
+      <div class="topic-pill">节目解析</div>
+    </div>
+  </div>
+  <div class="scroll-area">
+  <div class="content" style="padding-top:14px;">
+
+    <div id="user-posts-container"></div>
+
+    <div class="post-card" onclick="openPost(1)">
+      <div class="post-img">
+        <img id="comm-img1" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <div class="post-img-overlay"></div>
+      </div>
+      <div class="post-body">
+        <div class="post-top">
+          <div class="post-avatar">L</div>
+          <div class="post-user">luna_on_ice</div>
+          <div class="post-time">2小时前</div>
+        </div>
+        <div class="post-title">为什么羽生结弦的旋转让我无法呼吸</div>
+        <div class="post-excerpt">今天反复看了《天と地と》的旋转片段，发现他在加速时身体的收紧方式和普通选手完全不同——不是单纯的向心，而是一种从胸腔向外扩张又内收的…</div>
+        <div class="post-footer">
+          <div class="post-tag">弧线美学</div>
+          <div class="post-actions">
+            <div class="post-action liked">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <span>284</span>
+            </div>
+            <div class="post-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <span>47</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card" onclick="openPost(2)">
+      <div class="post-img" style="height:160px;">
+        <img id="comm-img2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <div class="post-img-overlay"></div>
+      </div>
+      <div class="post-body">
+        <div class="post-top">
+          <div class="post-avatar" style="background:linear-gradient(135deg,#c0a8d8,#a088c0);">M</div>
+          <div class="post-user">mirror_edge_</div>
+          <div class="post-time">5小时前</div>
+        </div>
+        <div class="post-title">坂本花织的考斯滕为什么总是「对」的</div>
+        <div class="post-excerpt">她的考斯滕从不喧宾夺主，永远在配合节目情绪而不是展示自己。这次世界赛的蓝黑渐变裙，配上那首曲子，真的是我看过最准确的一次视觉叙事。</div>
+        <div class="post-footer">
+          <div class="post-tag">考斯滕</div>
+          <div class="post-actions">
+            <div class="post-action">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <span>196</span>
+            </div>
+            <div class="post-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <span>33</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-card" onclick="openPost(3)">
+      <div class="post-img" style="height:170px;">
+        <img id="comm-img3" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <div class="post-img-overlay"></div>
+      </div>
+      <div class="post-body">
+        <div class="post-top">
+          <div class="post-avatar" style="background:linear-gradient(135deg,#a0c8d8,#80a8b8);">S</div>
+          <div class="post-user">snowdrift.s</div>
+          <div class="post-time">昨天</div>
+        </div>
+        <div class="post-title">用胶片相机拍了一场训练课，意外拍出了我心里花滑的样子</div>
+        <div class="post-excerpt">一直想用胶片记录冰上的运动，昨天终于拍了。慢门+高速运动，出来的效果比我预想的还要好——那种模糊不是缺陷，是时间留下的痕迹。</div>
+        <div class="post-footer">
+          <div class="post-tag">摄影</div>
+          <div class="post-actions">
+            <div class="post-action">
+              <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <span>521</span>
+            </div>
+            <div class="post-action">
+              <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              <span>88</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  <div class="comm-fab" onclick="openNewSheet()">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+  </div>
+</div>
+
+<!-- ═══════════════ DISCOVER ═══════════════ -->
+<div class="page" id="p-discover">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="disc-hero">
+    <img id="disc-hero-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+    <div class="disc-hero-overlay"></div>
+    <div class="disc-hero-text">
+      <div class="disc-hero-lbl">本周精选</div>
+      <div class="disc-hero-ttl">冰上的光，<br>看不见的美学</div>
+    </div>
+  </div>
+  <div class="scroll-area">
+  <div class="disc-content">
+
+    <div class="sec-hdr"><div class="sec-title">热门话题</div></div>
+    <div class="disc-tags-wrap">
+      <div class="disc-tags-row">
+        <div class="disc-tag"><div class="disc-tag-dot d1"></div># 冰刃美学</div>
+        <div class="disc-tag"><div class="disc-tag-dot d2"></div># 考斯滕拆解</div>
+        <div class="disc-tag"><div class="disc-tag-dot d3"></div># 悲剧浪漫主义</div>
+        <div class="disc-tag"><div class="disc-tag-dot d4"></div># 节目解析</div>
+        <div class="disc-tag"><div class="disc-tag-dot d5"></div># 胶片花滑</div>
+        <div class="disc-tag"><div class="disc-tag-dot d6"></div># 配乐情绪</div>
+      </div>
+    </div>
+
+    <div class="sec-hdr"><div class="sec-title">编辑推荐</div></div>
+    <div class="editorial-card">
+      <img id="disc-ed1" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+      <div class="editorial-overlay"></div>
+      <div class="editorial-meta">
+        <div class="editorial-lbl">编辑精选</div>
+        <div class="editorial-ttl">当光打在冰面上<br>那一秒的物理学</div>
+        <div class="editorial-sub">冰晶折射 · 光谱美学</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="grid-card">
+        <img id="disc-g1" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <div class="grid-overlay"></div>
+        <div class="grid-meta">
+          <div class="grid-lbl">摄影</div>
+          <div class="grid-ttl">冰刃与阴影</div>
+        </div>
+      </div>
+      <div class="grid-card">
+        <img id="disc-g2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+        <div class="grid-overlay"></div>
+        <div class="grid-meta">
+          <div class="grid-lbl">动态模糊</div>
+          <div class="grid-ttl">速度的诗</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="editorial-card" style="height:140px;">
+      <img id="disc-ed2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="">
+      <div class="editorial-overlay"></div>
+      <div class="editorial-meta">
+        <div class="editorial-lbl">深度</div>
+        <div class="editorial-ttl">星轨与冰痕：<br>两种时间的书写</div>
+        <div class="editorial-sub">长曝光摄影 · 轨迹美学</div>
+      </div>
+    </div>
+
+    <div class="sec-hdr" style="margin-top:8px;"><div class="sec-title">本周热榜</div></div>
+    <div class="trending-row">
+      <div class="trending-item">
+        <div class="trending-num">01</div>
+        <div class="trending-info">
+          <div class="trending-ttl">羽生结弦《SEIMEI》完整美学解析</div>
+          <div class="trending-meta">12,480 次阅读 · 考斯滕 · 编舞</div>
+        </div>
+        <div class="trending-img"><img id="trend-1" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
+      </div>
+      <div class="trending-item">
+        <div class="trending-num">02</div>
+        <div class="trending-info">
+          <div class="trending-ttl">Alysa Liu：自由是她最大的武器</div>
+          <div class="trending-meta">9,204 次阅读 · 专访</div>
+        </div>
+        <div class="trending-img"><img id="trend-2" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
+      </div>
+      <div class="trending-item">
+        <div class="trending-num">03</div>
+        <div class="trending-info">
+          <div class="trending-ttl">冰刃划过的几何诗学</div>
+          <div class="trending-meta">7,891 次阅读 · 弧线美学</div>
+        </div>
+        <div class="trending-img"><img id="trend-3" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
+      </div>
+      <div class="trending-item">
+        <div class="trending-num">04</div>
+        <div class="trending-info">
+          <div class="trending-ttl">Delulu 配乐：花滑编排逻辑</div>
+          <div class="trending-meta">6,330 次阅读 · 配乐</div>
+        </div>
+        <div class="trending-img"><img id="trend-4" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ YUZURU ═══════════════ -->
+<div class="page" id="p-yuzuru">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="back-bar" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg><span>运动员</span></div>
+  <div class="scroll-area">
+  <div class="yuz-hero">
+    <img id="img-yuzuru2" class="yuz-hero-img" alt="">
+    <div class="yuz-holo"></div>
+    <div class="yuz-hero-overlay"></div>
+    <div class="yuz-badges"><div class="yuz-badge">运动员专访</div><div class="yuz-badge">4回转先驱</div><div class="yuz-badge">两届奥运冠军</div></div>
+    <div class="yuz-hero-info">
+      <div class="yuz-src">美学档案 · BLING 特辑</div>
+      <div class="yuz-name">羽生结弦</div>
+      <div class="yuz-sub">他把冰场变成了一首诗</div>
+    </div>
+  </div>
+  <div class="yuz-body">
+    <div class="yuz-stat-row">
+      <div class="yuz-stat"><div class="yuz-stat-num">2×</div><div class="yuz-stat-lbl">奥运金牌</div></div>
+      <div class="yuz-stat"><div class="yuz-stat-num">322</div><div class="yuz-stat-lbl">世界纪录分</div></div>
+      <div class="yuz-stat"><div class="yuz-stat-num">19</div><div class="yuz-stat-lbl">年职业生涯</div></div>
+    </div>
+    <div class="yuz-intro">他不是在竞技，他是在创作。每一次跳跃落冰，都是一个句号；每一段步法，都是一行散文诗。</div>
+    <div class="yuz-quote">
+      <div class="yuz-quote-text">我想要的，是能感动人心的滑冰。技术是手段，不是目的。那些最打动我的节目，都有某种近乎绝望的美丽。</div>
+      <div class="yuz-quote-src">— 羽生结弦，退役发布会</div>
+    </div>
+    <div class="yuz-sec-ttl">代表节目</div>
+    <div class="yuz-prog-row">
+      <div class="yuz-prog-card"><div class="yuz-prog-swatch p1"></div><div class="yuz-prog-name">SEIMEI</div><div class="yuz-prog-year">2015–2016</div></div>
+      <div class="yuz-prog-card"><div class="yuz-prog-swatch p2"></div><div class="yuz-prog-name">天と地と</div><div class="yuz-prog-year">2021–2022</div></div>
+      <div class="yuz-prog-card"><div class="yuz-prog-swatch p3"></div><div class="yuz-prog-name">OTOÑAL</div><div class="yuz-prog-year">2019–2020</div></div>
+      <div class="yuz-prog-card"><div class="yuz-prog-swatch p4"></div><div class="yuz-prog-name">Origin</div><div class="yuz-prog-year">2018–2019</div></div>
+    </div>
+    <div class="yuz-sec-ttl">美学解析</div>
+    <div class="yuz-p">羽生的美学语言根植于日本传统美意识——「物哀」。他的节目从不追求明亮的救赎，而是沉溺于某种精致的悲伤。《SEIMEI》里，阴阳师的袍袖划过冰面，既是战斗也是仪式；《OTOÑAL》里，秋日的忧郁被拉到极致，每一次旋转都像是最后一次道别。</div>
+    <div class="yuz-p">他对考斯滕的要求极为苛刻：布料的悬坠感、刺绣的密度、颜色在冰场灯光下的折射角度，都要精确对应节目的情感温度。这种极端的完美主义，恰恰成就了他无法被复制的视觉识别度。</div>
+    <div class="yuz-quote">
+      <div class="yuz-quote-text">4A不是我的终点，而是我给自己的一个证明——如果连这个我都能做到，那么那些不可能也许并不是真的不可能。</div>
+      <div class="yuz-quote-src">— 羽生结弦，关于四周轴跳</div>
+    </div>
+    <div class="yuz-sec-ttl">冰迹与艺迹</div>
+    <div class="art-img-block" style="height:200px;border-radius:16px;overflow:hidden;margin-bottom:12px;"><img id="img-seimei2" style="width:100%;height:100%;object-fit:cover;" alt=""></div>
+    <div class="art-img-caption">《SEIMEI》步法序列，2016年世界锦标赛</div>
+    <div class="yuz-p">2022年北京冬奥会，他在4A失败后仍以绝对优势赢得银牌，而那次失败的跳跃却成为了许多人心中最动人的瞬间。不完美的完美，这也许是他最终极的美学命题。</div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FAVOURITES ═══════════════ -->
+<div class="page" id="p-favorites">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="fav-header">
+    <div class="fav-title-row"><div class="logo">收藏</div></div>
+    <div class="fav-count" id="fav-count">0 件内容</div>
+    <div class="fav-tabs">
+      <div class="fav-tab active">全部</div>
+      <div class="fav-tab">文章</div>
+      <div class="fav-tab">运动员</div>
+      <div class="fav-tab">节目</div>
+    </div>
+  </div>
+  <div class="scroll-area">
+    <div id="fav-grid" class="fav-grid"></div>
+    <div id="fav-empty" class="fav-empty" style="display:none;">
+      <div class="fav-empty-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+      <div class="fav-empty-text">还没有收藏</div>
+      <div class="fav-empty-sub">点击内容上的心形按钮<br>将喜欢的内容保存在这里</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PROFILE ═══════════════ -->
+<div class="page" id="p-profile">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="prof-hero">
+    <div class="prof-avatar" style="overflow:hidden;padding:0;"><img id="img-my-avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+    <div class="prof-name">abcdefghi_lmn</div>
+    <div class="prof-handle">@abcdefghi_lmn · 2023年加入</div>
+    <div class="prof-stats">
+      <div class="prof-stat"><div class="prof-stat-num">284</div><div class="prof-stat-lbl">获赞</div></div>
+      <div class="prof-stat"><div class="prof-stat-num" id="prof-fav-count">0</div><div class="prof-stat-lbl">收藏</div></div>
+      <div class="prof-stat"><div class="prof-stat-num">47</div><div class="prof-stat-lbl">发帖</div></div>
+    </div>
+  </div>
+  <div class="scroll-area">
+  <div class="prof-body">
+    <div class="prof-notes-hdr">
+      <div class="prof-notes-hdr-ttl">我的笔记</div>
+      <div class="prof-notes-count" id="prof-notes-count">0 篇</div>
+    </div>
+    <div id="prof-notes-list"></div>
+
+    <div class="prof-sec-ttl">最近浏览</div>
+    <div class="hist-item"><div class="hist-thumb h1" style="overflow:hidden;"><img id="img-hist1" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.8);"></div><div class="hist-info"><div class="hist-cat">弧线美学</div><div class="hist-ttl">冰刃划过的几何诗学</div><div class="hist-meta">阅读约 4 分钟</div></div><div class="hist-time">今天</div></div>
+    <div class="hist-item"><div class="hist-thumb h2" style="overflow:hidden;"><img id="img-hist2" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.8);"></div><div class="hist-info"><div class="hist-cat">运动员</div><div class="hist-ttl">Alysa Liu：自由是她最大的武器</div><div class="hist-meta">阅读约 6 分钟</div></div><div class="hist-time">昨天</div></div>
+    <div class="hist-item"><div class="hist-thumb h3" style="overflow:hidden;"><img id="img-hist3" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.8);"></div><div class="hist-info"><div class="hist-cat">配乐</div><div class="hist-ttl">Delulu 配乐与编排逻辑解析</div><div class="hist-meta">阅读约 3 分钟</div></div><div class="hist-time">3天前</div></div>
+    <div class="hist-item"><div class="hist-thumb h4" style="overflow:hidden;"><img id="img-hist4" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.8);"></div><div class="hist-info"><div class="hist-cat">运动员</div><div class="hist-ttl">羽生结弦：把冰场变成一首诗</div><div class="hist-meta">阅读约 7 分钟</div></div><div class="hist-time">4天前</div></div>
+    <div class="hist-item"><div class="hist-thumb h5" style="overflow:hidden;"><img id="img-hist5" style="width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(0.8);"></div><div class="hist-info"><div class="hist-cat">考斯滕</div><div class="hist-ttl">织物如何讲述故事</div><div class="hist-meta">阅读约 5 分钟</div></div><div class="hist-time">上周</div></div>
+    <div class="prof-sec-ttl" style="margin-top:20px;">设置</div>
+    <div class="prof-setting"><div class="prof-setting-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><div class="prof-setting-text"><div class="prof-setting-ttl">个人资料</div><div class="prof-setting-sub">修改头像、昵称、简介</div></div><div class="prof-setting-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div></div>
+    <div class="prof-setting"><div class="prof-setting-icon"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div><div class="prof-setting-text"><div class="prof-setting-ttl">通知设置</div><div class="prof-setting-sub">管理推送与消息提醒</div></div><div class="prof-setting-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div></div>
+    <div class="prof-setting"><div class="prof-setting-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><div class="prof-setting-text"><div class="prof-setting-ttl">隐私与安全</div><div class="prof-setting-sub">账号安全、数据管理</div></div><div class="prof-setting-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div></div>
+    <div class="prof-setting"><div class="prof-setting-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93l-1.41 1.41M5.34 18.66l-1.41 1.41M22 12h-2M4 12H2M18.66 18.66l-1.41-1.41M6.34 6.34L4.93 4.93"></path><circle cx="12" cy="12" r="9" fill="none"></circle></svg></div><div class="prof-setting-text"><div class="prof-setting-ttl">深色模式</div><div class="prof-setting-sub">已开启</div></div><div class="prof-setting-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div></div>
+    <div class="prof-setting"><div class="prof-setting-icon"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></div><div class="prof-setting-text"><div class="prof-setting-ttl">退出登录</div><div class="prof-setting-sub"></div></div><div class="prof-setting-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div></div>
+  </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SHOP ═══════════════ -->
+<div class="page" id="p-shop">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="shop-header">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div class="logo">周边</div>
+      <div style="position:relative;cursor:pointer;" onclick="goPage('p-cart')">
+        <div class="icon-btn"><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:rgba(255,255,255,0.5);fill:none;stroke-width:1.5;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg></div>
+        <div class="shop-badge-dot" id="shop-header-badge" style="display:none;">0</div>
+      </div>
+    </div>
+    <div class="print-entry" onclick="openPrintCustom()">
+      <div class="print-entry-row">
+        <div class="print-entry-vis">
+          <svg viewBox="0 0 80 80" fill="none">
+            <defs>
+              <radialGradient id="pe-g1" cx="0.3" cy="0.3"><stop offset="0%" stop-color="#e8b8d0"/><stop offset="100%" stop-color="#7858a0"/></radialGradient>
+              <radialGradient id="pe-g2" cx="0.7" cy="0.7"><stop offset="0%" stop-color="#a8c8e0"/><stop offset="100%" stop-color="#4868a0"/></radialGradient>
+            </defs>
+            <rect width="80" height="80" fill="#0d1828"/>
+            <circle cx="28" cy="28" r="22" fill="url(#pe-g1)" opacity="0.7"/>
+            <circle cx="52" cy="52" r="18" fill="url(#pe-g2)" opacity="0.65"/>
+            <path d="M 10 50 Q 40 20, 70 50" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" fill="none"/>
+          </svg>
+        </div>
+        <div class="print-entry-text">
+          <div class="print-entry-lbl">PRINT · 印花定制</div>
+          <div class="print-entry-ttl">音乐印花<em>定制</em></div>
+          <div class="print-entry-sub">把你最爱的节目配乐，变成专属抽象印花</div>
+        </div>
+        <div class="print-entry-arr"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+      </div>
+    </div>
+    <div class="shop-banner" style="overflow:hidden;padding:0;position:relative;">
+      <img id="img-shop-banner" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0.55;">
+      <div class="shop-banner-ghost" style="position:relative;z-index:1;">冰</div>
+      <div class="shop-banner-text" style="position:relative;z-index:1;">
+        <div class="shop-banner-lbl">2026 限定系列</div>
+        <div class="shop-banner-ttl">米兰冬奥纪念款</div>
+        <div class="shop-banner-sub">考斯滕印花 · 限量发售</div>
+      </div>
+    </div>
+    <div class="shop-cats">
+      <div class="shop-cat active">全部</div>
+      <div class="shop-cat">考斯滕</div>
+      <div class="shop-cat">配饰</div>
+      <div class="shop-cat">文具</div>
+      <div class="shop-cat">家居</div>
+      <div class="shop-cat">限定</div>
+    </div>
+  </div>
+  <div class="scroll-area">
+  <div class="shop-grid">
+    <div class="shop-card"><div class="shop-card-img s1" style="overflow:hidden;padding:0;"><img id="img-shop-hoodie" style="width:100%;height:100%;object-fit:cover;"><div class="shop-card-badge" style="position:absolute;top:8px;left:8px;">考斯滕</div></div><div class="shop-card-body"><div class="shop-card-cat">印花卫衣</div><div class="shop-card-name">迷幻紫雾<br>考斯滕纹样</div><div class="shop-card-price"><span class="shop-price">¥358</span></div></div><div class="shop-add" onclick="addToCart(event,'hoodie')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div>
+    <div class="shop-card"><div class="shop-card-img s2" style="overflow:hidden;padding:0;"><img id="img-shop-tote" style="width:100%;height:100%;object-fit:cover;"><div class="shop-card-badge" style="position:absolute;top:8px;left:8px;">新品</div></div><div class="shop-card-body"><div class="shop-card-cat">帆布袋</div><div class="shop-card-name">冰湖倒影<br>刺绣托特包</div><div class="shop-card-price"><span class="shop-price">¥228</span><span class="shop-price-orig">¥280</span></div></div><div class="shop-add" onclick="addToCart(event,'tote')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div>
+    <div class="shop-card"><div class="shop-card-img s3" style="overflow:hidden;padding:0;"><img id="img-shop-phone" style="width:100%;height:100%;object-fit:cover;"></div><div class="shop-card-body"><div class="shop-card-cat">手机壳</div><div class="shop-card-name">粉尘浪漫<br>磨砂保护壳</div><div class="shop-card-price"><span class="shop-price">¥128</span></div></div><div class="shop-add" onclick="addToCart(event,'phone')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div>
+    <div class="shop-card"><div class="shop-card-img s4" style="overflow:hidden;padding:0;"><img id="img-shop-notebook" style="width:100%;height:100%;object-fit:cover;"><div class="shop-card-badge" style="position:absolute;top:8px;left:8px;">限定</div></div><div class="shop-card-body"><div class="shop-card-cat">笔记本</div><div class="shop-card-name">暗夜独白<br>皮质手账本</div><div class="shop-card-price"><span class="shop-price">¥168</span><span class="shop-price-orig">¥198</span></div></div><div class="shop-add" onclick="addToCart(event,'notebook')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div>
+    <div class="shop-card"><div class="shop-card-img s5" style="overflow:hidden;padding:0;background:#f8f8fa;"><img id="img-shop-mug" style="width:100%;height:100%;object-fit:cover;"></div><div class="shop-card-body"><div class="shop-card-cat">马克杯</div><div class="shop-card-name">冰晶折射<br>陶瓷马克杯</div><div class="shop-card-price"><span class="shop-price">¥98</span></div></div><div class="shop-add" onclick="addToCart(event,'mug')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div>
+    <div class="shop-card"><div class="shop-card-img s6" style="overflow:hidden;padding:0;background:#f8f8fa;"><img id="img-shop-scarf" style="width:100%;height:100%;object-fit:cover;"><div class="shop-card-badge" style="position:absolute;top:8px;left:8px;">奥运款</div></div><div class="shop-card-body"><div class="shop-card-cat">丝巾</div><div class="shop-card-name">米兰冬奥<br>印花方巾</div><div class="shop-card-price"><span class="shop-price">¥288</span></div></div><div class="shop-add" onclick="addToCart(event,'scarf')"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div>
+  </div>
+  </div>
+  <div class="shop-cart-fab" id="shop-cart-fab" onclick="goPage('p-cart')"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><div class="cart-fab-badge" id="cart-fab-badge" style="display:none;">0</div></div>
+</div>
+
+<!-- ═══════════════ POST DETAIL ═══════════════ -->
+<div class="page" id="p-post-detail">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="back-bar" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg><span>社区</span></div>
+  <div class="scroll-area" id="pd-scroll">
+    <div id="pd-content"></div>
+  </div>
+  <div class="pd-compose">
+    <input id="pd-input" type="text" placeholder="说点什么…" oninput="updateSendBtn()">
+    <div class="pd-send-btn disabled" id="pd-send-btn" onclick="sendComment()">发送</div>
+  </div>
+</div>
+
+<!-- ═══════════════ COMPOSE ARTICLE ═══════════════ -->
+<div class="page" id="p-compose-article">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="composer-header">
+    <div class="composer-cancel" onclick="cancelCompose()">取消</div>
+    <div class="composer-mid-ttl">写文章</div>
+    <div class="composer-publish disabled" id="article-publish-btn" onclick="publishArticle()">发布</div>
+  </div>
+  <div class="scroll-area">
+    <div class="composer-body">
+      <div class="composer-tag-row" id="article-tag-row">
+        <div class="composer-tag" onclick="selectTag(this)">弧线美学</div>
+        <div class="composer-tag" onclick="selectTag(this)">考斯滕</div>
+        <div class="composer-tag" onclick="selectTag(this)">配乐</div>
+        <div class="composer-tag" onclick="selectTag(this)">编舞</div>
+        <div class="composer-tag" onclick="selectTag(this)">运动员</div>
+        <div class="composer-tag" onclick="selectTag(this)">节目解析</div>
+        <div class="composer-tag" onclick="selectTag(this)">摄影</div>
+      </div>
+      <input class="composer-title-input" id="article-title" placeholder="标题…" oninput="checkArticleReady()">
+      <textarea class="composer-body-input" id="article-body" placeholder="写下你对花滑美学的观察、思考、感受…" oninput="checkArticleReady()"></textarea>
+      <div class="composer-count" id="article-count">0 字</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ COMPOSE NOTE ═══════════════ -->
+<div class="page" id="p-compose-note">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="composer-header">
+    <div class="composer-cancel" onclick="cancelCompose()">取消</div>
+    <div class="composer-mid-ttl">写笔记 · 仅自己可见</div>
+    <div class="composer-publish disabled" id="note-publish-btn" onclick="publishNote()">保存</div>
+  </div>
+  <div class="scroll-area">
+    <div class="composer-body">
+      <input class="composer-title-input" id="note-title" placeholder="笔记标题…" oninput="checkNoteReady()">
+      <textarea class="composer-body-input" id="note-body" placeholder="只属于你的私人笔记，灵感、片段、观看记录…" oninput="checkNoteReady()"></textarea>
+      <div class="composer-count" id="note-count">0 字</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ NOTE DETAIL ═══════════════ -->
+<div class="page" id="p-note-detail">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="back-bar" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg><span>我的笔记</span></div>
+  <div class="scroll-area">
+    <div style="padding:18px 22px 30px;" id="note-detail-body"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ CART ═══════════════ -->
+<div class="page" id="p-cart">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="cart-header">
+    <div class="cart-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div>
+    <div class="cart-ttl">购物车</div>
+    <div class="cart-count" id="cart-count">0 件</div>
+  </div>
+  <div class="scroll-area">
+    <div id="cart-list-wrap"></div>
+  </div>
+  <div class="cart-summary" id="cart-summary" style="display:none;">
+    <div class="cart-total-row">
+      <div class="cart-total-lbl">合计</div>
+      <div class="cart-total"><span class="cart-total-prefix">¥</span><span id="cart-total-num">0</span></div>
+    </div>
+    <button class="cart-checkout" onclick="openCheckout()">去结算</button>
+  </div>
+</div>
+
+<!-- ═══════════════ MUSIC PRINT CUSTOM ═══════════════ -->
+<div class="page" id="p-print-custom">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="pp-header">
+    <div class="pp-back" onclick="ppPrev()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div>
+    <div class="pp-title" id="pp-title">音乐印花定制</div>
+    <div class="pp-step-ind" id="pp-step-ind">1 / 5</div>
+  </div>
+  <div class="pp-progress" id="pp-progress">
+    <div class="pp-progress-seg active"></div>
+    <div class="pp-progress-seg"></div>
+    <div class="pp-progress-seg"></div>
+    <div class="pp-progress-seg"></div>
+    <div class="pp-progress-seg"></div>
+  </div>
+  <div class="pp-body" id="pp-body"></div>
+  <div class="pp-cta-bar">
+    <button class="pp-cta-back" id="pp-cta-back" onclick="ppPrev()" style="display:none;">上一步</button>
+    <button class="pp-cta-next disabled" id="pp-cta-next" onclick="ppNext()">下一步</button>
+  </div>
+</div>
+
+<!-- ═══════════════ MUSE ═══════════════ -->
+<div class="page" id="p-muse">
+  <div class="status-bar"><span>9:41</span><span>●●●</span></div>
+  <div class="muse-header">
+    <div class="muse-back" onclick="goBack()"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div>
+    <div class="muse-header-text">
+      <div class="muse-header-ttl">缪斯</div>
+      <div class="muse-header-sub">YOUR PRIVATE CRITIC</div>
+    </div>
+    <div class="muse-header-orb"></div>
+  </div>
+  <div class="muse-scroll" id="muse-scroll">
+    <div class="muse-intro" id="muse-intro">
+      <div class="muse-intro-q">"今晚，我们聊点什么？"</div>
+      <div class="muse-intro-sub">我是缪斯。聊节目编排、考斯滕设计、冰上的诗、或者你刚看完一段视频后说不出口的那种感觉。</div>
+      <div class="muse-chip-row">
+        <div class="muse-chip" onclick="museSendChip(this)">什么是花滑里的「物哀」？</div>
+        <div class="muse-chip" onclick="museSendChip(this)">羽生的旋转和别人有什么不一样？</div>
+        <div class="muse-chip" onclick="museSendChip(this)">推荐一段适合悲剧浪漫风格的配乐</div>
+        <div class="muse-chip" onclick="museSendChip(this)">考斯滕的颜色为什么这么重要？</div>
+      </div>
+    </div>
+    <div id="muse-msgs"></div>
+  </div>
+  <div class="muse-input-bar">
+    <textarea class="muse-input" id="muse-input" placeholder="聊点冰上的事…" rows="1" oninput="museInputChange()" onkeydown="museKey(event)"></textarea>
+    <div class="muse-send disabled" id="muse-send-btn" onclick="museSend()">发送</div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="nav-item active" id="nav-home" onclick="goPage('p-home');setNav(this)"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><div class="nav-lbl">首页</div></div>
+  <div class="nav-item" onclick="goPage('p-community');setNav(this)"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="nav-lbl">社区</div></div>
+  <div class="nav-item" onclick="goPage('p-discover');setNav(this)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg><div class="nav-lbl">发现</div></div>
+  <div class="nav-item" onclick="goPage('p-shop');setNav(this)"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg><div class="nav-lbl">周边</div></div>
+  <div class="nav-item" onclick="goPage('p-favorites');setNav(this)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><div class="nav-lbl">收藏</div></div>
+  <div class="nav-item" onclick="goPage('p-profile');setNav(this)"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><div class="nav-lbl">我的</div></div>
+</div>
+
+</div>
+
+<script src="js/resources.js"></script>
+<script src="js/app.js"></script>
+
+</body></html>
