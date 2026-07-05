@@ -849,21 +849,21 @@ updateCartBadge();
 renderUserPosts();
 
 /* ════════════════════════════════════════════════════════════
-   缪斯 — MUSE AI CHAT
+   缪斯 — MUSE 预设问答（暂未接入 API，问题与回答均为预设内容）
    ════════════════════════════════════════════════════════════ */
 
-const MUSE_SYSTEM = `你是 BLING 应用中的「缪斯」，一位花样滑冰美学评论员。你的语言克制、专业、略带诗意；你深谙花滑历史、考斯滕设计、编舞理念、运动员个人风格、配乐选择、冰上几何与肢体语言。
+const MUSE_PRESETS = [
+  {q:'什么是花滑里的「物哀」？', a:'物哀是对易逝之物的凝视。冰面本身就是它的载体——刀痕转瞬即被抹去，姿态定格只在你看见的那一秒。真正的物哀感，往往藏在动作收束时那一点犹豫里，仿佛在说，别急，让这一秒再长一点。'},
+  {q:'羽生的旋转和别人有什么不一样？', a:'大多数人的旋转追求速度与稳定，他的旋转更像一次呼吸的延长。轴心几乎不晃动，节奏里却带着停顿感，像是给音乐留白，而不是被音乐推着走。这种从容，才是最难模仿的部分。'},
+  {q:'推荐一段适合悲剧浪漫风格的配乐', a:'试试拉赫玛尼诺夫的第二钢琴协奏曲，或是改编版的《月光奏鸣曲》。悲剧浪漫需要的不是悲伤本身，而是明知结局仍要往前滑的那种坚持，配乐要托得住这份重量。'},
+  {q:'考斯滕的颜色为什么这么重要？', a:'颜色先于动作抵达观众。冷色调让人先感到疏离与孤独，暖色调则替选手把情绪提前说出口。好的考斯滕颜色不是好看，而是替编舞多讲一句话，在灯光扫过的瞬间。'},
+  {q:'编舞里最容易被忽略的细节是什么？', a:'手指的收尾。多数人只看跳跃和旋转，但指尖延伸的角度决定了整套节目的呼吸感。收得太急情绪就断了，放得太松又显得漫不经心。真正的高手，连指尖都在讲故事。'},
+  {q:'为什么有些节目让人一看就想哭？', a:'因为它诚实。技术可以练出来，但那种让人鼻酸的瞬间，往往来自选手把私人的记忆悄悄放进了动作里。你看到的不是完美，而是一个人愿意在冰上暴露自己的脆弱。'}
+];
 
-回应规则：
-- 永远用中文回答。
-- 偏好短句、意象化的表达。多用比喻和细节。
-- 避免说教感、过度热情、口号式表达。
-- 不使用 emoji。不使用列表符号、Markdown 加粗或标题。
-- 每次回复 70-130 字之间。
-- 当用户问你不熟悉的话题，可以承认，再把话题轻轻引回花滑或相关美学。
-- 用"你"称呼对方，自称"我"。语气像一位安静坐在你旁边、和你一起看冰场的朋友。`;
+const MUSE_FALLBACK = '这个问题我还没准备好答案，先聊聊下面这些吧——等我准备得再充分一些，就能接住更多话题了。';
 
-const museHistory = []; // {role:'user'|'assistant', content}
+const museAskedQuestions = new Set();
 let museSending = false;
 
 function museInputChange(){
@@ -881,33 +881,40 @@ function museKey(e){
 }
 
 function museSendChip(el){
-  document.getElementById('muse-input').value = el.textContent;
-  museSend();
+  museAsk(el.textContent.trim());
 }
 
-async function museSend(){
-  if(museSending) return;
+function museSend(){
   const inp = document.getElementById('muse-input');
   const text = inp.value.trim();
-  if(!text) return;
-  
-  // Hide intro after first message
-  const intro = document.getElementById('muse-intro');
-  if(intro) intro.style.display = 'none';
-  
-  museHistory.push({role:'user', content:text});
+  if(!text || museSending) return;
   inp.value = '';
   inp.style.height = 'auto';
   museInputChange();
-  
+  museAsk(text);
+}
+
+function museAsk(text){
+  if(museSending || !text) return;
+  museSending = true;
+
+  // Hide intro after first message
+  const intro = document.getElementById('muse-intro');
+  if(intro) intro.style.display = 'none';
+
+  // Remove any dangling chip prompt from a previous turn
+  const oldChips = document.getElementById('muse-followup');
+  if(oldChips) oldChips.remove();
+
+  museAskedQuestions.add(text);
+
   const msgs = document.getElementById('muse-msgs');
   msgs.insertAdjacentHTML('beforeend', `
     <div class="muse-msg muse-msg-user">
       <div class="muse-msg-user-bubble">${escapeHtml(text)}</div>
     </div>
   `);
-  
-  // Typing indicator
+
   const typingId = 'muse-typing-' + Date.now();
   msgs.insertAdjacentHTML('beforeend', `
     <div class="muse-msg muse-msg-ai" id="${typingId}">
@@ -918,38 +925,36 @@ async function museSend(){
       <div class="muse-typing"><div class="muse-typing-dot"></div><div class="muse-typing-dot"></div><div class="muse-typing-dot"></div></div>
     </div>
   `);
-  scrollMuseToBottom();
-  
-  museSending = true;
   museInputChange();
-  
-  try {
-    const messages = [
-      ...museHistory.map(m => ({role:m.role, content: m.role==='user'?m.content:m.content}))
-    ];
-    // Prepend system as part of first user message since claude.complete uses messages
-    const fullPrompt = `${MUSE_SYSTEM}\n\n以下是对话历史：\n${messages.map(m=>(m.role==='user'?'用户':'缪斯')+'：'+m.content).join('\n\n')}\n\n缪斯：`;
-    
-    const reply = await window.claude.complete(fullPrompt);
-    const cleaned = String(reply||'').trim().replace(/^缪斯[:：]\s*/,'');
-    museHistory.push({role:'assistant', content: cleaned});
-    
+  scrollMuseToBottom();
+
+  const preset = MUSE_PRESETS.find(p => p.q === text);
+  const answer = preset ? preset.a : MUSE_FALLBACK;
+
+  setTimeout(() => {
     const typingEl = document.getElementById(typingId);
     if(typingEl){
-      const paras = cleaned.split(/\n\n+/).map(p => `<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('');
-      typingEl.querySelector('.muse-typing').outerHTML = `<div class="muse-msg-ai-text">${paras}</div>`;
+      typingEl.querySelector('.muse-typing').outerHTML = `<div class="muse-msg-ai-text"><p>${escapeHtml(answer)}</p></div>`;
     }
-  } catch(err){
-    const typingEl = document.getElementById(typingId);
-    if(typingEl){
-      typingEl.querySelector('.muse-typing').outerHTML = `<div class="muse-msg-ai-text"><p>抱歉，我走神了一会。再问一次吧。</p></div>`;
-    }
-    console.error('muse error', err);
-  } finally {
     museSending = false;
     museInputChange();
+    museRenderFollowups();
     scrollMuseToBottom();
-  }
+  }, 900);
+}
+
+function museRenderFollowups(){
+  const remaining = MUSE_PRESETS.filter(p => !museAskedQuestions.has(p.q));
+  if(!remaining.length) return;
+
+  const msgs = document.getElementById('muse-msgs');
+  const chips = remaining.slice(0, 4).map(p =>
+    `<div class="muse-chip" onclick="museSendChip(this)">${escapeHtml(p.q)}</div>`
+  ).join('');
+  msgs.insertAdjacentHTML('beforeend', `
+    <div class="muse-chip-row" id="muse-followup">${chips}</div>
+  `);
+  scrollMuseToBottom();
 }
 
 function scrollMuseToBottom(){

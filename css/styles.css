@@ -636,6 +636,7 @@ body{font-family:'DM Sans',sans-serif;background:#0a0f18;min-height:100vh;displa
 .muse-intro-q{font-family:'Abhaya Libre',serif;font-style:italic;font-size:18px;color:var(--text);line-height:1.5;margin-bottom:14px;font-weight:400;}
 .muse-intro-sub{font-size:11px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
 .muse-chip-row{display:flex;flex-direction:column;gap:8px;}
+#muse-followup{margin:4px 0 22px;}
 .muse-chip{padding:11px 14px;border-radius:12px;background:rgba(176,168,216,0.06);border:0.5px solid rgba(176,168,216,0.12);font-size:12px;color:var(--sub);cursor:pointer;line-height:1.5;transition:all 0.2s;}
 .muse-chip:hover{background:rgba(176,168,216,0.1);border-color:rgba(176,168,216,0.22);color:var(--text);}
 .muse-msg{margin-bottom:22px;animation:fadeUp 0.3s ease;}

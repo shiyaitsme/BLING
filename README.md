@@ -38,6 +38,6 @@ python3 -m http.server 8000
 - 社区文章详情 + 评论（`openPost` / `sendComment`）
 - 新建文章 / 私人笔记（`openNewSheet` / `publishArticle` / `publishNote`）
 - 购物车 + 支付流程（`addToCart` / `openCheckout` / `processPayment`）
-- 缪斯 AI 对话（`museSend`，需配合 `window.claude.complete` 环境）
+- 缪斯问答（`museSend` / `museSendChip`，当前为预设问题库，暂未接入真实对话 API）
 - BLING ARC 年度回顾（`openArc`）
 - 音乐印花定制 5 步流程（`openPrintCustom` / `generatePattern`）
